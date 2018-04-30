@@ -17,7 +17,7 @@ message = gets.chomp
 message = message.split('')
 # puts "message array:\n#{message}\n"
 
-shift = 0;
+shift = 0
 loop do
     puts "How many letters should we SHIFT?\n"
     shift =  gets.chomp.to_i
