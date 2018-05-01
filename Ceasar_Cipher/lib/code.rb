@@ -1,8 +1,10 @@
-class CeasarCypher    
+class CeasarCypher  
+    attr_reader :Max_shift
+    
     def initialize
         @Alphabet_lowercase = "abcdefghijklmnopqrstuvwxyz"
         @Alphabet_uppercase = @Alphabet_lowercase.upcase
-        @Max_shift = (@Alphabet_lowercase.size)
+        @Max_shift = @Alphabet_lowercase.size
         @Numerals = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].freeze
 
         lowercase_loop = @Alphabet_lowercase.split('') * 2
@@ -10,12 +12,11 @@ class CeasarCypher
         numeral_loop = @Numerals * (@Max_shift / 10 + 1)
 
         @Full_loop = lowercase_loop + uppercase_loop + numeral_loop;
-        puts @Full_loop.to_s
     end
 
     def launch
         puts "Welcome to Ceaser Cipher! Please write a  s e c r e t  message:\n"
-        message = get_text
+        message = get_text gets
 
         puts "How many letters should we SHIFT?\n"
         unchecked_shift = gets.chomp.to_i
@@ -23,12 +24,13 @@ class CeasarCypher
         cyphered_message = cypher message, checked_shift
     end
 
-    def get_text
-        message = gets.chomp
+    def get_text(input)
+        message = input.chomp
         message = message.split('')
         # puts "message array:\n#{message}\n"
     end
 
+    # Makes sure shift number is in bounds of our alphabet
     def check_cypher(shift)
         while shift < 0
             shift = @Max_shift + shift
@@ -41,6 +43,7 @@ class CeasarCypher
         shift
     end
 
+    # returns an encrypted string
     def cypher(message, shift)
         message.map! do |symbol|
             alphabet_index = @Full_loop.index(symbol)
@@ -59,4 +62,5 @@ class CeasarCypher
 end
 
 # launch code:
-# CeasarCypher.new.launch
+# thing = CeasarCypher.new
+# thing.launch
