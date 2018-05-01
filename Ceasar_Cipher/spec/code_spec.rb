@@ -1,6 +1,6 @@
 require "code"
 
-describe Code do
+describe CeasarCypher do
 
 end
 
